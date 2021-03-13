@@ -1,5 +1,3 @@
-const isDevMode = process.env.NODE_ENV === "development";
-
 module.exports = {
     presets: [
         ["@babel/preset-env", { useBuiltIns: "entry", corejs: 3, targets: { node: 14 } }],
@@ -10,10 +8,10 @@ module.exports = {
         "babel-plugin-styled-components",
         "lodash",
         "@babel/plugin-transform-runtime",
-        ["@babel/plugin-proposal-decorators", { legacy: true }],
-        ["@babel/plugin-proposal-class-properties", { loose: true }],
         "@babel/plugin-proposal-nullish-coalescing-operator",
         "@babel/plugin-proposal-optional-chaining",
-        isDevMode && "react-refresh/babel",
-    ].filter(Boolean),
+        ["@babel/plugin-proposal-decorators", { legacy: true }],
+        ["@babel/plugin-proposal-class-properties", { loose: false }],
+        "react-refresh/babel",
+    ],
 };

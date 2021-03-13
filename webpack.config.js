@@ -9,8 +9,6 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 
 const outputPath = path.resolve(__dirname, "dist");
 
-const { EnvironmentPlugin } = require("webpack");
-
 module.exports = (env, args) => {
     const MODE = args.mode || "development";
     const PUBLIC_PATH = process.env.PUBLIC_PATH || "/";
@@ -26,11 +24,12 @@ module.exports = (env, args) => {
         loader: MiniCssExtractPlugin.loader,
         options: {
             esModule: true,
-            hmr: isDevMode,
         },
     };
 
     return {
+        // https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md#webpack-5-compatibility-issues-with-webpack-dev-server3
+        target: process.env.NODE_ENV !== "production" ? "web" : "browserslist",
         entry: {
             index: "./src/index.tsx",
         },
@@ -46,23 +45,11 @@ module.exports = (env, args) => {
                 },
                 {
                     test: /\.css$/i,
-                    use: [
-                        // Creates `style` nodes from JS strings
-                        styleLoader,
-                        // Translates CSS into CommonJS
-                        "css-loader",
-                    ],
+                    use: [styleLoader, "css-loader"],
                 },
                 {
                     test: /\.s[ac]ss$/i,
-                    use: [
-                        // Creates `style` nodes from JS strings
-                        styleLoader,
-                        // Translates CSS into CommonJS
-                        "css-loader",
-                        // Compiles Sass to CSS
-                        "sass-loader",
-                    ],
+                    use: [styleLoader, "css-loader", "sass-loader"],
                 },
                 {
                     test: /\.(png|jpg|gif|svg|ttf|eot)$/i,
@@ -95,23 +82,16 @@ module.exports = (env, args) => {
                 template: "./src/index.html",
             }),
             new ForkTsCheckerPlugin(),
-            new BundleAnalyzerPlugin({
-                openAnalyzer: false,
-                analyzerMode: isDevMode ? "server" : "static",
-                analyzerPort: 1234,
-            }),
-            new EnvironmentPlugin([]),
             new CleanWebpackPlugin(),
-            isDevMode && new ReactRefreshWebpackPlugin(),
             isDevMode && new webpack.HotModuleReplacementPlugin(),
+            isDevMode && new ReactRefreshWebpackPlugin(),
         ].filter(Boolean),
         watchOptions: {
             ignored: /node_modules/,
         },
         devServer: {
             contentBase: outputPath,
-            host: "0.0.0.0",
-            hot: isDevMode,
+            hot: true,
         },
     };
 };

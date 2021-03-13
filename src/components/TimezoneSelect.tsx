@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { isTimezoneNameValid, TimezoneName, TIMEZONES } from "../timezones";
+import { formatTimezoneName, isTimezoneNameValid, TimezoneName, TIMEZONES } from "../timezones";
 
 const MySelect = styled.select``;
 
@@ -16,7 +16,7 @@ export default function TimezoneSelect(props: TimezoneSelectProps): JSX.Element 
         <MySelect value={props.value ?? undefined} onChange={onSelectChange}>
             {Object.entries(TIMEZONES).map(([name, offset]) => (
                 <MyOption key={name} value={name}>
-                    {name} ({offset})
+                    {formatTimezoneName(name)} ({offset})
                 </MyOption>
             ))}
         </MySelect>

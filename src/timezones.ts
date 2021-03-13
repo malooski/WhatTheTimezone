@@ -544,3 +544,7 @@ export type TimezoneName = keyof typeof TIMEZONES;
 export function isTimezoneNameValid(name: string): name is TimezoneName {
     return name in TIMEZONES;
 }
+
+export function formatTimezoneName(name: string): string {
+    return name.replace(/_/g, " ");
+}
