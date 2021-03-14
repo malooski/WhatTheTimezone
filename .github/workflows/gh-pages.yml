@@ -23,7 +23,7 @@ jobs:
             - name: Build
               run: yarn build
               env:
-                  PUBLIC_PATH: /whatthetimezone/
+                  PUBLIC_PATH: /WhatTheTimezone/
 
             - name: Prepare for deployment
               run: touch dist/.nojekyll
