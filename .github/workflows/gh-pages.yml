@@ -20,13 +20,10 @@ jobs:
             - name: Install dependencies
               run: yarn
 
-            - name: Run tests
-              run: yarn test
-
             - name: Build
               run: yarn build
               env:
-                  PUBLIC_PATH: /WhatTheTimezone/
+                  PUBLIC_PATH: /whatthetimezone/
 
             - name: Prepare for deployment
               run: touch dist/.nojekyll
