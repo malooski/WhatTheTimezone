@@ -26,18 +26,22 @@ export class AppModel {
             return [
                 new FriendModel({
                     name: "Malooski",
+                    link: "https://twitter.com/malooskii",
                     timezone: "America/Chicago",
                 }),
                 new FriendModel({
                     name: "Silver",
+                    link: "https://twitter.com/SilverCatBoi",
                     timezone: "Canada/Eastern",
                 }),
                 new FriendModel({
                     name: "Steven",
+                    link: "https://twitter.com/Circuit_scars/",
                     timezone: "America/Los_Angeles",
                 }),
                 new FriendModel({
                     name: "Tarochi",
+                    link: "https://twitter.com/tarochii",
                     timezone: "Europe/London",
                 }),
             ];
