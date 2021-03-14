@@ -75,7 +75,7 @@
     },
     "scripts": {
         "dev": "webpack serve --mode development --hot",
-        "build": "webpack build",
+        "build": "webpack build --mode production",
         "serve": "http-server ./dist"
     },
     "browserslist": [

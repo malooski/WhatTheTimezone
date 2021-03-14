@@ -72,7 +72,7 @@ module.exports = (env, args) => {
             publicPath: PUBLIC_PATH,
             path: outputPath,
         },
-        devtool: isDevMode ? "eval-source-map" : "none",
+        devtool: isDevMode ? "eval-source-map" : undefined,
         plugins: [
             new MiniCssExtractPlugin({
                 filename: isDevMode ? "[name].css" : "[name].[hash].css",
