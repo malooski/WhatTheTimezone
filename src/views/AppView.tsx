@@ -16,11 +16,18 @@ import { AppModel } from "../models/app";
 import { useIntervalMemo } from "../util/react";
 
 const RootDiv = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+const ContainerDiv = styled.div`
     width: 600px;
-    margin: 32px auto;
     background-color: rgba(0255, 255, 255, 0.5);
     padding: 32px;
     border-radius: 32px;
+    margin-top: 32px;
 `;
 
 const MyTimeDiv = styled(RowDiv)`
@@ -48,38 +55,42 @@ export default observer(() => {
 
     return (
         <RootDiv>
-            <ColumnDiv spacing="16px">
-                <h1>What The Timezone??</h1>
-                <MyTimeDiv>
-                    <h3>
-                        Your Time <HelpIcon text={MY_TIME_HELP_TEXT} />
-                    </h3>
-                    <div>
-                        <Input
-                            type="text"
-                            onChange={e => app.myTime.update(e.target.value)}
-                            value={othersTimeText ?? app.myTime.raw ?? myTimeText}
-                        />
-                        <Button onClick={() => app.clearTimes()}>Reset</Button>
-                    </div>
-                </MyTimeDiv>
-                <NewFriendForm
-                    onNewFriend={f => {
-                        friends.push(f);
-                        app.friends.set(friends);
-                    }}
-                />
+            <ContainerDiv>
+                <ColumnDiv spacing="16px">
+                    <h1>What The Timezone??</h1>
+                    <MyTimeDiv>
+                        <h3>
+                            Your Time <HelpIcon text={MY_TIME_HELP_TEXT} />
+                        </h3>
+                        <div>
+                            <Input
+                                type="text"
+                                onChange={e => app.myTime.update(e.target.value)}
+                                value={othersTimeText ?? app.myTime.raw ?? myTimeText}
+                            />
+                            <Button onClick={() => app.clearTimes()}>Reset</Button>
+                        </div>
+                    </MyTimeDiv>
+                    <NewFriendForm
+                        onNewFriend={f => {
+                            friends.push(f);
+                            app.friends.set(friends);
+                        }}
+                    />
 
-                <FriendTable
-                    friends={friends}
-                    myTime={app.myTime.value ?? currTime}
-                    onOtherTimeUpdate={(uuid, v, tz) => app.updateOthersTime(uuid, v, tz)}
-                    otherValue={app.othersTime.raw}
-                    otherUuid={app.othersUuid}
-                    otherTime={app.othersTime.value}
-                    onRemoveFriend={uuid => app.friends.set(friends.filter(f => f.uuid !== uuid))}
-                />
-            </ColumnDiv>
+                    <FriendTable
+                        friends={friends}
+                        myTime={app.myTime.value ?? currTime}
+                        onOtherTimeUpdate={(uuid, v, tz) => app.updateOthersTime(uuid, v, tz)}
+                        otherValue={app.othersTime.raw}
+                        otherUuid={app.othersUuid}
+                        otherTime={app.othersTime.value}
+                        onRemoveFriend={uuid =>
+                            app.friends.set(friends.filter(f => f.uuid !== uuid))
+                        }
+                    />
+                </ColumnDiv>
+            </ContainerDiv>
         </RootDiv>
     );
 });
