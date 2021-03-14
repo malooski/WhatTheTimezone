@@ -18,7 +18,7 @@ import { useIntervalMemo } from "../util/react";
 const RootDiv = styled.div`
     width: 600px;
     margin: 32px auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0255, 255, 255, 0.5);
     padding: 32px;
     border-radius: 32px;
 `;

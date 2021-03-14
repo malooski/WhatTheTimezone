@@ -23,7 +23,7 @@ export interface FriendTableRowProps {
 }
 
 const MyRow = styled.tr<{ active?: boolean }>`
-    ${p => p.active && "background-color: blue;"}
+    ${p => p.active && "background-color: #88AEC3;"}
 `;
 
 export default observer((props: FriendTableRowProps) => {

@@ -7,13 +7,41 @@ body,
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+    color: darken(#14538a, 20%);
+}
+
+a {
+    color: #14538a;
+    &:hover {
+        color: #4792bb;
+    }
+}
+
+select,
+input {
+    padding: 4px;
+    border-radius: 4px;
+
+    border: none;
+}
+
+button {
+    margin: 0px;
+    padding: 6px 8px;
+    border-radius: 4px;
+
+    border: none;
+
+    background-color: #14538a;
     color: white;
+
+    &:hover {
+        background-color: #4792bb;
+    }
 }
 
 html {
-    background-image: url("./assets/Helm\ -\ Blurred.png");
-    background-position: center;
-    background-size: cover;
+    background-image: linear-gradient(#b4c8d9, #3d6788);
 }
 
 h1,
