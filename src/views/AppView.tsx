@@ -60,9 +60,7 @@ export default observer(() => {
                             onChange={e => app.myTime.update(e.target.value)}
                             value={othersTimeText ?? app.myTime.raw ?? myTimeText}
                         />
-                        <Button onClick={() => app.clearTimes()}>
-                            <FontAwesomeIcon icon={faSync} />
-                        </Button>
+                        <Button onClick={() => app.clearTimes()}>Clear</Button>
                     </div>
                 </MyTimeDiv>
                 <NewFriendForm
